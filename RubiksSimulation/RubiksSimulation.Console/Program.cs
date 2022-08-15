@@ -4,8 +4,20 @@ using RubiksSimulation.Core;
 string help = @"
 
 print : Print the current state of the cube.
+
 f : Rotate the front face 90' clockwise
 f' : Rotate the front face 90' counterclockwise
+r : Rotate the right face 90' clockwise
+r' : Rotate the right face 90' counterclockwise
+u : Rotate the top face 90' clockwise
+u' : Rotate the top face 90' counterclockwise
+b : Rotate the back face 90' clockwise
+b' : Rotate the back face 90' counterclockwise
+l : Rotate the left face 90' clockwise
+l' : Rotate the left face 90' counterclockwise
+d : Rotate the bottom face 90' clockwise
+d' : Rotate the bottom face 90' counterclockwise
+
 reset: reset all of the faces to their initial state
 help: display these commands again.
 exit: Exit the simulation
@@ -18,8 +30,14 @@ Console.WriteLine(help);
 
 Rubik cube = new Rubik();
 
-cube.CubeMoved += (object sender, CubeMovementEvent e) => {
+cube.CubeMoved += (object sender, CubeMovementEvent e) =>
+{
     Console.WriteLine($"Moving Cube {e.Orientation} {e.Direction}");
+};
+
+cube.CubeSolved += (object sender, CubeSolved e) =>
+{
+    Console.WriteLine(e.Message);
 };
 
 bool escape = false;
@@ -46,7 +64,8 @@ while (escape != true)
             continue;
         }
 
-        if(command == "help"){
+        if (command == "help")
+        {
             Console.WriteLine(help);
             continue;
         }

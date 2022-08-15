@@ -5,8 +5,4 @@
         Clockwise = 1,
         CounterClockwise = 3
     }
-
-
-
-
 }
